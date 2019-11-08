@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title>登录</title>
+<script src="../static/js/jquery-2.1.4.min.js"></script>
+<script src="../static/js/layer/layer.js"></script>
+<script type="text/javascript">
+	//获取页面地址
+	function register(){
+		var data = {
+	       	 "ccode":$("#userName").val(),
+	    	 "password":$("#ps").val()};
+		$.ajax({
+			 url: '/register',
+	         type:"POST",
+	         contentType: "application/json",
+	         data: JSON.stringify(data), // 以json字符串方式传递
+	         success: function(data) {
+	        	 console.log(data);
+	        	 if(data=="1"){
+		    		 layer.open({
+						type : 2,
+						title : '成功页',
+						maxmin : false,
+						shadeClose : false,
+						area : [ '100%', '100%' ],
+						content : "/view/login.html"
+		    		});
+	        	 }else{
+	        		 layer.alert("注册失败");
+	        	 }
+	         }
+		})
+	}
+</script>
+</head>
+<body>
+	<input type="text" id="userName"></input>
+	<input type="text" id="ps"></input>
+	<button id="registerBut" onclick="register()">注册</button>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title>登录</title>
+<script src="../static/js/jquery-2.1.4.min.js"></script>
+<script src="../static/js/layer/layer.js"></script>
+<script type="text/javascript">
+	//获取页面地址
+	function login(){
+		var data = {
+	       	 "ccode":$("#userName").val(),
+	    	 "password":$("#ps").val()};
+		$.ajax({
+			 url: '/login',
+	         type:"POST",
+	         contentType: "application/json",
+	         data: JSON.stringify(data), // 以json字符串方式传递
+	         success: function(data) {
+	        	 console.log(data);
+	        	 if(data=="1"){
+		    		 layer.open({
+						type : 2,
+						title : '成功页',
+						maxmin : false,
+						shadeClose : false,
+						area : [ '100%', '100%' ],
+						content : "/view/success.html"
+		    		});
+	        	 }else if(data=="2"){
+	        		 layer.alert("账号不存在");
+	        	 }else if(data=="3"){
+	        		 layer.alert("密码错误");
+	        	 }
+	         }
+		})
+	}
+</script>
+</head>
+<body>
+	<input type="text" id="userName"></input>
+	<input type="password" id="ps"></input>
+	<button id="loginbut" onclick="login()">登录</button>
+	<a href="toSuccess">toSuccess</a>
+</body>
+</html>
