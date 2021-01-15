@@ -1,12 +1,16 @@
 package com.example.demo.controller.shiro;
 
 
+import com.example.demo.entity.TUser;
+import com.example.demo.service.shiro.ITUserService;
+import com.example.demo.task.TestTask;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.shiro.IUserService;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Timer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,10 +26,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	private IUserService sss;
+	private ITUserService sss;
 	@RequestMapping("/queryUser")
-	public Map queryUser(){
-		Map maps = sss.queryUser();
+	public Map queryUser(String ccode){
+		Map maps = sss.selectByCcode(ccode);
 		return maps;
+	}
+	@RequestMapping("/batchInsertUser")
+	public void batchInsertUser(){
+		new TestTask(sss);
 	}
 }

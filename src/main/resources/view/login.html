@@ -1,46 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8"></meta>
-<title>ç™»å½•</title>
-<script src="../static/js/jquery-2.1.4.min.js"></script>
-<script src="../static/js/layer/layer.js"></script>
-<script type="text/javascript">
-	//è·å–é¡µé¢åœ°å€
-	function login(){
-		var data = {
-	       	 "ccode":$("#userName").val(),
-	    	 "password":$("#ps").val()};
-		$.ajax({
-			 url: '/login',
-	         type:"POST",
-	         contentType: "application/json",
-	         data: JSON.stringify(data), // ä»¥jsonå­—ç¬¦ä¸²æ–¹å¼ä¼ é€’
-	         success: function(data) {
-	        	 console.log(data);
-	        	 if(data=="1"){
-		    		 layer.open({
-						type : 2,
-						title : 'æˆåŠŸé¡µ',
-						maxmin : false,
-						shadeClose : false,
-						area : [ '100%', '100%' ],
-						content : "/view/success.html"
-		    		});
-	        	 }else if(data=="2"){
-	        		 layer.alert("è´¦å·ä¸å­˜åœ¨");
-	        	 }else if(data=="3"){
-	        		 layer.alert("å¯†ç é”™è¯¯");
-	        	 }
-	         }
-		})
-	}
-</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+	<meta name="description" content="´Ë´úÂëÄÚÈİÎª³¬ÃÈµÄÃ¨Í·Ó¥µÇÂ¼½çÃæ"/>
+	<title>µÇÂ¼</title>
+	<link rel="stylesheet" href="../static/css/jq22.css">
 </head>
 <body>
-	<input type="text" id="userName"></input>
-	<input type="password" id="ps"></input>
-	<button id="loginbut" onclick="login()">ç™»å½•</button>
-	<a href="toSuccess">toSuccess</a>
+
+<div id="login">
+	<div class="wrapper">
+		<div class="login">
+			<div class="container offset1 loginform">
+				<div id="owl-login">
+					<div class="hand"></div>
+					<div class="hand hand-r"></div>
+					<div class="arms">
+						<div class="arm"></div>
+						<div class="arm arm-r"></div>
+					</div>
+				</div>
+				<div class="pad">
+					<input type="hidden" name="_csrf" value="9IAtUxV2CatyxHiK2LxzOsT6wtBE6h8BpzOmk=">
+					<div class="control-group">
+						<div class="controls">
+							<label for="userName" class="control-label fa fa-envelope"></label>
+							<input id="userName" name="userName" placeholder="ÕËºÅ" tabindex="1" autofocus="autofocus"
+								   class="form-control input-medium">
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<label for="password" class="control-label fa fa-asterisk"></label>
+							<input id="password" type="password" name="password" placeholder="ÃÜÂë" tabindex="2"
+								   class="form-control input-medium">
+						</div>
+					</div>
+				</div>
+				<div class="form-actions"><a href="#" tabindex="5" class="btn pull-left btn-link text-muted">Forgot
+					password?</a><a href="#" tabindex="6" class="btn btn-link text-muted">Sign Up</a>
+					<button tabindex="4" class="btn btn-primary" id="loginbut" onclick="login()">µÇÂ¼</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/jquery-2.1.4.min.js"></script>
+	<script src="../static/js/layer/layer.js"></script>
+	<script>
+		$(function () {
+			$('#login #password').focus(function () {
+				$('#owl-login').addClass('password');
+			}).blur(function () {
+				$('#owl-login').removeClass('password');
+			});
+		});
+
+		function login() {
+			var data = {
+				"ccode": $("#userName").val(),
+				"password": $("#password").val()
+			};
+			$.ajax({
+				url: '/login',
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify(data), // ÒÔjson×Ö·û´®·½Ê½´«µİ
+				success: function (data) {
+					console.log(data);
+					if (data == "1") {
+						window.location.href = "/view/success.html";
+					} else if (data == "2") {
+						layer.alert("ÕËºÅ²»´æÔÚ");
+					} else if (data == "3") {
+						layer.alert("ÃÜÂë´íÎó");
+					}
+				}
+			})
+		}
+	</script>
+</div>
 </body>
 </html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8"></meta>
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="../static/js/map/echarts.min.js"></script>
+       <script type="text/javascript" src="../static/js/map/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="../static/js/map/ecStat.min.js"></script>
+       <script type="text/javascript" src="../static/js/map/dataTool.min.js"></script>
+       <script type="text/javascript" src="../static/js/map/china.js"></script>
+       <script type="text/javascript" src="../static/js/map/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+       <script type="text/javascript" src="../static/js/map/bmap.min.js"></script>
+       <script type="text/javascript" src="../static/js/map/simplex.js"></script>
+       <script src="../static/js/jquery-2.1.4.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+function randomData() {
+    return Math.round(Math.random()*1000);
+}
+option = null;
+myChart.showLoading();
+
+$.getJSON('chongqing.json', function (geoJson) {
+    myChart.hideLoading();
+    echarts.registerMap('重庆', geoJson);
+
+
+    myChart.setOption(option = {
+        title: {
+            text: '重庆市地图',
+            subtext: '数据来自Echarts',
+            left: 'center'
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        visualMap: {
+            min: 0,
+            max: 1500,
+            text:['High','Low'],
+            realtime: false,
+            calculable: true,
+            inRange: {
+
+                color: ['#e0ffff', '#006edd']
+            }
+        },
+        series: [
+            {
+                name: '重庆市地图',
+                type: 'map',
+                mapType: '重庆', // 自定义扩展图表类型
+                itemStyle:{
+                    normal:{label:{show:true}},
+                    emphasis:{label:{show:true}}
+                },
+                data:[
+                    {name: '奉节县', value: randomData()},
+                    {name: '巫溪县', value: randomData()},
+                    {name: '开州区', value: randomData()},
+                    {name: '酉阳土家族苗族自治县', value: randomData()},
+                    {name: '彭水苗族土家族自治县', value: randomData()},
+                    {name: '云阳县', value: randomData()},
+                    {name: '万州区', value: randomData()},
+                    {name: '城口县', value: randomData()},
+                    {name: '江津区', value: randomData()},
+                    {name: '石柱土家族自治县', value: randomData()},
+                    {name: '巫山县', value: randomData()},
+                    {name: '涪陵区', value: randomData()},
+                    {name: '丰都县', value: randomData()},
+                    {name: '武隆区', value: randomData()},
+                    {name: '南川区', value: randomData()},
+                    {name: '秀山土家族苗族自治县', value: randomData()},
+                    {name: '黔江区', value: randomData()},
+                    {name: '合川区', value: randomData()},
+                    {name: '綦江区', value: randomData()},
+                    {name: '忠县', value: randomData()},
+                    {name: '梁平县', value: randomData()},
+                    {name: '巴南区', value: randomData()},
+                    {name: '潼南区', value: randomData()},
+                    {name: '永川区', value: randomData()},
+                    {name: '垫江县', value: randomData()},
+                    {name: '渝北区', value: randomData()},
+                    {name: '长寿区', value: randomData()},
+                    {name: '大足区', value: randomData()},
+                    {name: '铜梁区', value: randomData()},
+                    {name: '荣昌区', value: randomData()},
+                    {name: '璧山区', value: randomData()},
+                    {name: '北碚区', value: randomData()},
+                    {name: '万盛区', value: randomData()},
+                    {name: '九龙坡区', value: randomData()},
+                    {name: '沙坪坝区', value: randomData()},
+                    {name: '南岸区', value: randomData()},
+                    {name: '江北区', value: randomData()},
+                    {name: '大渡口区', value: randomData()},
+
+                    {name: '渝中区', value: randomData()},
+
+                ],
+                // 自定义名称映射
+
+            }
+        ]
+    });
+});;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

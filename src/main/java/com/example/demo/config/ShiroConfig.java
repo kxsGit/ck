@@ -1,18 +1,15 @@
 package com.example.demo.config;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import com.example.demo.common.util.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.demo.common.util.UserRealm;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Configuration
 public class ShiroConfig{
@@ -42,8 +39,14 @@ public class ShiroConfig{
 		 * role  该资源必须得到角色权限才可以访问
 		 */
 		map.put("/dengluye", "anon");//设置访问权限
+		map.put("/user/batchInsertUser","anon");
 		map.put("/toRegister", "anon");//设置访问权限
-		//map.put("/*", "authc");
+		map.put("/user/queryUser","anon");
+		map.put("/**/*.css", "anon");
+		map.put("/**/*.js", "anon");
+		map.put("/**/*.png", "anon");
+		map.put("/**/*.jpg", "anon");
+		map.put("/**/login2.html", "anon");
 		sffb.setUnauthorizedUrl("/toError");
 		sffb.setLoginUrl("/dengluye");//设置跳转到登录也面的地址
 		sffb.setFilterChainDefinitionMap(map);

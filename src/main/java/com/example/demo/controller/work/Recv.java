@@ -17,7 +17,7 @@ public class Recv {
         // 声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-        // 同一时刻服务器只会发一条消息给消费者
+        // 同一时刻服务器只会发一条消息给消费者处理
         //channel.basicQos(1);
 
         // 定义队列的消费者

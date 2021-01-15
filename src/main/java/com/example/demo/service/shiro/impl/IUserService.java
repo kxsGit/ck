@@ -1,8 +1,8 @@
-package com.example.demo.service.shiro;
+package com.example.demo.service.shiro.impl;
 
 import com.example.demo.entity.User;
-import com.sun.tools.javac.util.List;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +19,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 @Service
 public interface IUserService extends IService<User> {
-	Map queryUser();
+	List<Map> queryUser();
 	Map selectByCcode(String ccode);
 }

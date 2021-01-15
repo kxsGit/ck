@@ -15,5 +15,5 @@ import java.util.Map;
  */
 public interface TUserDao extends BaseMapper<TUser> {
     Map queryUser();
-    Map selectByCcode(String ccode);
+    Map selectByCcode(String ccode,String id);
 }

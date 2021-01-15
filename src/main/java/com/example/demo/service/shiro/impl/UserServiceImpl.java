@@ -2,9 +2,9 @@ package com.example.demo.service.shiro.impl;
 
 import com.example.demo.dao.UserDao;
 import com.example.demo.entity.User;
-import com.example.demo.service.shiro.IUserService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUser
 	private UserDao userdao;
 
 	@Override
-	public Map queryUser() {
-		Map queryUser = userdao.queryUser();
+	public List<Map> queryUser() {
+		List<Map> queryUser = userdao.queryUser();
 		return queryUser;
 	}
 
